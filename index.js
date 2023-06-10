@@ -155,6 +155,17 @@ async function recursiveScrape(currentUrl) {
   fs.writeFileSync(outputPathHtml, html);
   console.log("Successfully created HTML report at " + outputPathHtml);
 
+  // write sorted links to json array in a file
+  const relativeLinks = JSON.stringify(
+    [...allRelativeLinks]
+      .map((url) => new URL(url, urlToScrape).pathname)
+      .sort()
+  );
+  const jsFile = `module.exports = ${relativeLinks};`;
+
+  const outputPathLinks = path.join(outputDir, "_whitelist.js");
+  fs.writeFileSync(outputPathLinks, jsFile);
+
   // uncomment these to see the results in the console
   // console.log("Redirects", Object.fromEntries(redirectsFromTo));
   // console.log("Files", [...foundFiles]);

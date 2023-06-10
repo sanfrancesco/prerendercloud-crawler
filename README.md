@@ -9,6 +9,8 @@ Generates the following files:
 - output/crawl-results.html with an HTML table of screenshots and meta tags per page
 - output/crawl-results.json for the full data
 - output/screenshots/\*.png for each page screenshot
+- output/\_whitelist.js special file for https://github.com/sanfrancesco/prerendercloud-server, a JavaScript array of paths for pre-rendering
+  - \_whitelist.js in the build/dist directory of your app configures which pages are enabled for lazy-load and crawl-on-boot pre-rendering
 
 To use, clone and run `npm start`
 
